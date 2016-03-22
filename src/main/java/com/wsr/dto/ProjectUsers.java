@@ -47,11 +47,8 @@ public class ProjectUsers implements Serializable{
 	@Column(name="last_updated_on")
 	private String lastUpdatedOn; 
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "ProjectUserRoles", catalog = "wsrreport", 
-				joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false) },
-				inverseJoinColumns = { @JoinColumn(name = "role_id",nullable = false, updatable = false) })
-	private Set<ProjectRoles> projectRoles = new HashSet<ProjectRoles>(0);
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "pk.ProjectUsers", cascade=CascadeType.ALL)
+	private Set<ProjectUserRoles> projectUserRoles = new HashSet<ProjectUserRoles>(0);
 	
 	public String getUserName() {
 		return userName;
@@ -77,10 +74,10 @@ public class ProjectUsers implements Serializable{
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
-	public Set<ProjectRoles> getProjectRoles() {
-		return projectRoles;
+	public Set<ProjectUserRoles> getprojectUserRoles() {
+		return projectUserRoles;
 	}
-	public void setProjectRoles(Set<ProjectRoles> projectRoles) {
-		this.projectRoles = projectRoles;
+	public void setprojectUserRoles(Set<ProjectUserRoles> projectUserRoles) {
+		this.projectUserRoles = projectUserRoles;
 	}
 }
