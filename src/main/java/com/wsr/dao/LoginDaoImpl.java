@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.wsr.dto.LoginDto;
+import com.wsr.dto.ProjectUsers;
 
 @Repository
 public class LoginDaoImpl  implements LoginDao  {
@@ -18,8 +18,8 @@ public class LoginDaoImpl  implements LoginDao  {
 	public List getUser() {
 		List list=null;
 		try{
-			list=hibernateTemplate.loadAll(LoginDto.class);
-		}catch(Exception e){
+			list=hibernateTemplate.loadAll(ProjectUsers.class);
+		}catch(Exception e){	
 			e.printStackTrace();
 		}
 		

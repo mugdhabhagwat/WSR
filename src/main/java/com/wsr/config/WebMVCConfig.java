@@ -35,7 +35,7 @@ public class WebMVCConfig {
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://10.76.168.173:3306/wsrreport");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/wsrreport");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root");
 		return dataSource;
@@ -45,7 +45,7 @@ public class WebMVCConfig {
 	@Bean(name = "sessionFactory")
 	public SessionFactory getsessionfactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder sessionFactoryBuilder = new LocalSessionFactoryBuilder(dataSource);
-		// sessionFactoryBuilder.addAnnotatedClasses(LoginDto.class);
+		// sessionFactoryBuilder.addAnnotatedClasses(ProjectUsers.class);
 		sessionFactoryBuilder.scanPackages("com.wsr.dto");
 		sessionFactoryBuilder.addProperties(getHibernateProperties());
 		return sessionFactoryBuilder.buildSessionFactory();

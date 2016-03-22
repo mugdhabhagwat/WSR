@@ -18,8 +18,8 @@ public class LoginServiceImpl implements LoginService {
 	@SuppressWarnings("rawtypes")
 	@Override
 	public List getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		List list = loginDao.getUser();
+		return list;
 	}
 
 }

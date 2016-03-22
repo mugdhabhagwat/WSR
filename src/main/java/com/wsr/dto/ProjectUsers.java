@@ -2,16 +2,24 @@ package com.wsr.dto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ProjectUsers")
-public class LoginDto implements Serializable{
+public class ProjectUsers implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -39,6 +47,12 @@ public class LoginDto implements Serializable{
 	@Column(name="last_updated_on")
 	private String lastUpdatedOn; 
 	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "ProjectUserRoles", catalog = "wsrreport", 
+				joinColumns = {@JoinColumn(name = "user_id", nullable = false, updatable = false) },
+				inverseJoinColumns = { @JoinColumn(name = "role_id",nullable = false, updatable = false) })
+	private Set<ProjectRoles> projectRoles = new HashSet<ProjectRoles>(0);
+	
 	public String getUserName() {
 		return userName;
 	}
@@ -63,5 +77,10 @@ public class LoginDto implements Serializable{
 	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
-
+	public Set<ProjectRoles> getProjectRoles() {
+		return projectRoles;
+	}
+	public void setProjectRoles(Set<ProjectRoles> projectRoles) {
+		this.projectRoles = projectRoles;
+	}
 }
