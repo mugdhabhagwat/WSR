@@ -2,10 +2,14 @@ package com.wsr.service;
 
 import java.util.List;
 
+import com.wsr.dto.ProjectUsers;
+
 public interface LoginService {
 	
 	@SuppressWarnings("rawtypes")
-	public List getUsers();
+	public List<ProjectUsers> getUsers();
+	
+	public int insertRow(ProjectUsers projectUsers);
 	
 
 }

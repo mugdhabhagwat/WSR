@@ -8,11 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ProjectRoles")
+@Table(name = "ProjectRoles")
 public class ProjectRoles {
 	
 	private static final long serialVersionUID = 1L;
@@ -25,7 +26,7 @@ public class ProjectRoles {
 	@Column(name="role_description")
 	private String roleDescription;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "projectRoles")
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "projectRoles")
 	private Set<ProjectUsers> projectUsers = new HashSet<ProjectUsers>(0);
 
 	public String getRoleId() {
@@ -44,8 +45,8 @@ public class ProjectRoles {
 		this.roleDescription = roleDescription;
 	}
 
-	public Set<ProjectUsers> getProjectUsers() {
-		return projectUsers;
+	public Set<ProjectUsers> getProjectUserRoles() {
+		return this.projectUsers;
 	}
 
 	public void setProjectUsers(Set<ProjectUsers> projectUsers) {

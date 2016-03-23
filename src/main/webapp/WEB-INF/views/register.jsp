@@ -13,43 +13,21 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
 </head>
 <body>	
 	<center>
 
 		<div style="color: teal; font-size: 30px">Register User</div>
 		
-		<c:url var="userRegistration" value="registerUser" />
-		<form:form id="registerForm" modelAttribute="LoginDto" method="post" action="registerUser">
-			<table width="400px" height="150px">
-				<tr>
-					<td><form:label path="username">User Name</form:label></td>
-					<td><form:input path="username" /></td>
-				</tr>
-				<tr>
-					<td><form:label path="password">Password</form:label></td>
-					<td><form:input id="password" path="last_updated_on" /></td>
-					<td><a ></a></td>
-				</tr>
-					<td><form:label path="userRoles">User Roles</form:label></td>
-					<td>
-						<form:checkbox path="userRoles" value="admin" />Admin 
-	                    <form:checkbox path="userRoles" value="user" />User
-					 </td>					
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="register"/>
-					</td>
-				</tr>
-				<tr>
-			</table>
-		</form:form>
+		<table border="1" bgcolor="black" width="600px">
+		<c:if test="${not empty projectUsersList}">
+		<ul>
+			<c:forEach var="listValue" items="${projectUsersList}">
+				<li>${listValue}</li>
+			</c:forEach>
+		</ul>
+		</c:if>
+		</table>
 	</center>
 </body>
 </html>
