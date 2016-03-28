@@ -7,9 +7,6 @@ import com.wsr.dto.ProjectUsers;
 public interface LoginService {
 	
 	@SuppressWarnings("rawtypes")
-	public List<ProjectUsers> getUsers();
-	
-	public int insertRow(ProjectUsers projectUsers);
-	
+	public List<ProjectUsers> getUsers();	
 
 }

@@ -29,5 +29,30 @@
 		</c:if>
 		</table>
 	</center>
+	
+	
+	<div style="color: teal;font-size: 30px">Registration Form</div>
+	<br><br>
+	<c:url var="userRegistration" value="saveUser.html"/>
+	<form:form id="registerForm" modelAttribute="user" method="post" action="${userRegistration}">
+	<table width="400px" height="150px">
+	<tr>
+	<td><form:label path="userName">User Name</form:label></td>
+	<td><form:input  path="userName"/></td>
+	</tr>
+	<tr>
+	<td><form:label path="password">Password</form:label></td>
+	<td><form:input  path="password"/></td>
+	</tr>
+	<tr>
+	<td><form:label path="projectRoles">Role</form:label></td>
+	<td><form:radiobuttons path="projectRoles" items="${projectRoles.roleDescription}"/></td>
+	</tr>
+	<tr><td></td><td>
+	<input type="submit" value="registerUser" />
+	</td></tr>
+	</table>
+	</form:form>
+	
 </body>
 </html>

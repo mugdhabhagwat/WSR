@@ -13,28 +13,16 @@ import com.wsr.dto.ProjectUsers;
 import com.wsr.service.LoginService;
 
 
-@Controller
 public class LoginController {
 
-	@Autowired
+	
 	public LoginService loginService;
 	
-	@Autowired
+	
 	LoginService dataService;
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String redirectPage(){		
 		return "login";		
 	}
-	
-	@RequestMapping(@ModelAttribute("projectUsers") ProjectUsers projectUsers)
-	public ModelAndView redirectToRegisterPage(){	
-		/*List projectUsersList = loginService.getUsers();
-		return new ModelAndView("register","projectUsersList",projectUsersList);*/
-		
-		projectUsers.setprojectUserRoles(null);
-		dataService.
-		return new ModelAndView("redirect:list");
-	}
-	
 }
