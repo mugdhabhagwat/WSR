@@ -46,7 +46,7 @@
 	</tr>
 	<tr>
 	<td><form:label path="projectRoles">Role</form:label></td>
-	<td><form:radiobuttons path="projectRoles" items="${projectRoles.roleDescription}"/></td>
+	<td><form:radiobuttons path="projectRoles" items="${projectRoles}"/></td>
 	</tr>
 	<tr><td></td><td>
 	<input type="submit" value="registerUser" />
