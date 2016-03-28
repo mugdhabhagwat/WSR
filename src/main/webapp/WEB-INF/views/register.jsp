@@ -13,46 +13,61 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
   <link rel="stylesheet" href="/resources/demos/style.css">
+  
+  <script>		
+		function validateRegistrationForm(){
+			var userNameInput = document.getElementById("userName").value;
+			var passwordInput = document.getElementById("password").value;
+			var projectRolesList = document.getElementById("projectRolesList");
+			var projectRoleSelected=null;
+			
+			if(projectRolesList.selectedIndex!=-1)
+				projectRoleSelected = projectRolesList.options[projectRolesList.selectedIndex].value;
+			
+			
+			if((userNameInput==null || userNameInput == "") || (passwordInput==null || passwordInput=="") || (projectRoleSelected==null || projectRoleSelected=="")) {
+				alert("Please fill in required details");
+				return false;
+			}
+			else
+				return true;
+		}
+	</script>
+  
 </head>
 <body>	
 	<center>
-
-		<div style="color: teal; font-size: 30px">Register User</div>
-		
-		<table border="1" bgcolor="black" width="600px">
-		<c:if test="${not empty projectUsersList}">
-		<ul>
-			<c:forEach var="listValue" items="${projectUsersList}">
-				<li>${listValue}</li>
-			</c:forEach>
-		</ul>
-		</c:if>
-		</table>
-	</center>
-	
-	
 	<div style="color: teal;font-size: 30px">Registration Form</div>
 	<br><br>
 	<c:url var="userRegistration" value="saveUser.html"/>
-	<form:form id="registerForm" modelAttribute="user" method="post" action="${userRegistration}">
+	<form:form id="registerForm" modelAttribute="user" method="post" onsubmit="return validateRegistrationForm()" action="saveUser">
 	<table width="400px" height="150px">
 	<tr>
 	<td><form:label path="userName">User Name</form:label></td>
-	<td><form:input  path="userName"/></td>
+	<td><form:input  path="userName" id="userName"/></td>
 	</tr>
 	<tr>
 	<td><form:label path="password">Password</form:label></td>
-	<td><form:input  path="password"/></td>
+	<td><form:input  path="password" id="password"/></td>
 	</tr>
 	<tr>
-	<td><form:label path="projectRoles">Role</form:label></td>
-	<td><form:radiobuttons path="projectRoles" items="${projectRoles}"/></td>
+	<td><form:label path="projectRoles">Project Roles</form:label></td>
+	<td>
+	<form:select  path="projectRoles" id="projectRolesList">
+        <form:options items="${projectRoles}" itemValue="roleId" itemLabel="roleDescription"></form:options>
+    </form:select>
+    </td>
 	</tr>
-	<tr><td></td><td>
-	<input type="submit" value="registerUser" />
+	<tr><td>
+	<input type="submit" value="Register User"/>
 	</td></tr>
 	</table>
 	</form:form>
+	</center>
 	
+	<script>
+	document.getElementById("projectRolesList").removeAttribute("multiple");
+	</script>
+		
 </body>
 </html>
