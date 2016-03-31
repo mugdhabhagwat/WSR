@@ -6,7 +6,8 @@ import com.wsr.dto.ProjectUsers;
 
 public interface LoginDao {
 
-	@SuppressWarnings("rawtypes")
+	
 	public List<ProjectUsers> getUser();
+	public List findUserRolebyUserName(String username); // throws UsernameNotFoundException;
 	
 }
